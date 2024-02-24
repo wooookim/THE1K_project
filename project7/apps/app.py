@@ -20,11 +20,6 @@ from google.cloud import storage
 import datetime
 
 ##############
-# vertax ai
-
-
-
-####################
 
 app = Flask("Google Login App")
 app.secret_key = "CodeSpecialist.com"
@@ -55,7 +50,7 @@ os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 # 유출 조심 / client_secret.json 유출 금지
 GOOGLE_CLIENT_ID = (
-    ""
+    "200475201819-kjn35ua9q131d6f7ohru6qpus0h6cbue.apps.googleusercontent.com"
 )
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
@@ -143,20 +138,7 @@ def uploader_file():
         fps = video.get(cv2.CAP_PROP_FPS)
         count = 0
         
-        # # 1초 단위로 영상을 자르고 Google Cloud Storage로 업로드
-        # while(video.isOpened()):
-        #     ret, image = video.read()
-        #     if ret == False:
-        #         break
-        #     if(int(video.get(1)) % fps == 0):
-        #         frame_name = "upload_%d.jpg" %count
-        #         blob_name = blob_directory + frame_name
-        #         local_img_path = os.path.join(temp_dir, frame_name)
-        #         cv2.imwrite("temp/base/upload_3_%d.jpg" %count, image)
-        #         print('save', str(int(video.get(1))))
-        #         upload_to_gcs(blob_name, cv2.imencode('.jpg', image)[1].tobytes())
-                
-        #         count += 1
+
         # 1초 단위로 영상을 자르고 Google Cloud Storage로 업로드
         while(video.isOpened()):
             ret, image = video.read()
@@ -165,9 +147,7 @@ def uploader_file():
             if(int(video.get(1)) % fps == 0):
                 cv2.imwrite("temp/base/upload_3_%d.jpg" %count, image)
                 print('save', str(int(video.get(1))))
-                # frame_name = "upload_%d.jpg" %count
-                blob_name = blob_directory + "upload_%d.jpg" %count
-                upload_to_gcs(blob_name, cv2.imencode('.jpg', image)[1].tobytes())
+                upload_to_gcs("temp/base/upload_3_%d.jpg" %count, cv2.imencode('.jpg', image)[1].tobytes())
                 count += 1
                 
         os.remove(local_file_path)

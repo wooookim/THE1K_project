@@ -1,0 +1,21 @@
+.video-container {
+    /* background-color: aquamarine; */
+}
+#cam {
+    /* background-color: blueviolet; */
+    padding-right: 20px;
+}
+.video_upload{
+    /* background-color: royalblue; */
+}
+.video-buttons button {
+    border: none;
+}
+
+.video_upload input{
+    border: none;
+}
+
+#file{
+    border: none;
+}
