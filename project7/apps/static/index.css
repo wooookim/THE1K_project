@@ -1,0 +1,51 @@
+.title img {
+    /*380 x 105*/
+    width: 304px;
+    height: 70px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.script {
+    margin-top: 250px;
+    margin-left: 40px;
+}
+
+.contact {
+    margin-top: 220px;
+    margin-left: 40px;
+}
+
+.middle {
+    display: flex;
+}
+
+.middle img {
+    margin-top: 200px;
+    width: 350px;
+    height: 350px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link,
+a:visited {
+    /* background-color: gray; */
+    color: black;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover,
+a:active {
+    background-color: gray;
+}
+
+.main_script img {
+    width: 21px;
+    height: 21px;
+}
