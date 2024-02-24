@@ -124,7 +124,8 @@ def uploader_file():
         
         blob_name = secure_filename(f.filename)     # filename 저장
         id = User.id
-        blob_directory = f"{id}/{current_date}/"
+        # blob_directory = f"{id}/{current_date}/"
+        id = session['name']
         
         # 업로드된 파일을 일시적으로 로컬 디스크에 저장
         local_file_path = os.path.join(temp_dir, blob_name)
@@ -145,9 +146,11 @@ def uploader_file():
             if ret == False:
                 break
             if(int(video.get(1)) % fps == 0):
-                cv2.imwrite("temp/base/upload_3_%d.jpg" %count, image)
+                local_img_path = "%s_%s_%d.jpg" %(id, current_date, count)
+                cv2.imwrite(local_img_path, image)
                 print('save', str(int(video.get(1))))
-                upload_to_gcs("temp/base/upload_3_%d.jpg" %count, cv2.imencode('.jpg', image)[1].tobytes())
+                upload_to_gcs(local_img_path, cv2.imencode('.jpg', image)[1].tobytes())
+                os.remove(local_img_path)
                 count += 1
                 
         os.remove(local_file_path)
