@@ -74,12 +74,14 @@ def login_is_required(function):
 
     return wrapper
 
+
 ###########################################
 # sj 서비스 계정 gcs 연동
 # 유출 금지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="team05-project-3ee2c0d1741b.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "team05-project-3ee2c0d1741b.json"
 
 ######################################################
+
 
 @app.route("/")
 def index():
@@ -92,11 +94,14 @@ def google_login():
     session["state"] = state
     return redirect(authorization_url)
 
+
 ############################################
+
 
 @app.route("/study")
 def study():
     return render_template("study.html")
+
 
 # ----------------------------------------
 # bucket 정보 (현 테스트 파일 !!!!!!!!!!!!!!!)
@@ -106,75 +111,66 @@ bucket_name = "video_file_upload_test"
 temp_dir = "temp"
 if not os.path.exists(temp_dir):
     os.makedirs(temp_dir)
-    
+
+
 # GCS에 업로드 함수
 def upload_to_gcs(blob_name, file_content):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
-    blob = bucket.blob(blob_name)       #blob_name 은 업로드 할때 저장 이름
+    blob = bucket.blob(blob_name)  # blob_name 은 업로드 할때 저장 이름
 
     blob.upload_from_string(file_content)
-    
+
+
 # 파일 gcs 전송
-@app.route("/study/uploader", methods=['POST'], endpoint = "uploader")
+@app.route("/study/uploader", methods=["POST"], endpoint="uploader")
 def uploader_file():
-    if request.method == 'POST':
-        f = request.files['file']  # study.html에 form에서 받아온 파일 
+    if request.method == "POST":
+        f = request.files["file"]  # study.html에 form에서 받아온 파일
         current_date = datetime.datetime.now().strftime("%Y%m%d")
-        
-        blob_name = secure_filename(f.filename)     # filename 저장
+
+        blob_name = secure_filename(f.filename)  # filename 저장
         id = User.id
         # blob_directory = f"{id}/{current_date}/"
-        id = session['name']
-        
+        id = session["name"]
+
         # 업로드된 파일을 일시적으로 로컬 디스크에 저장
         local_file_path = os.path.join(temp_dir, blob_name)
         f.save(local_file_path)
-        
+
         # 로컬 디스크에 저장된 파일을 OpenCV로 읽어와서 처리
         video = cv2.VideoCapture(local_file_path)
         if not video.isOpened():
             return "Error: Could not open video file", 400
-        
+
         fps = video.get(cv2.CAP_PROP_FPS)
         count = 0
-        
 
         # 1초 단위로 영상을 자르고 Google Cloud Storage로 업로드
-        while(video.isOpened()):
+        while video.isOpened():
             ret, image = video.read()
             if ret == False:
                 break
-            if(int(video.get(1)) % fps == 0):
-                local_img_path = "%s_%s_%d.jpg" %(id, current_date, count)
+            if int(video.get(1)) % fps == 0:
+                local_img_path = "%s_%s_%d.jpg" % (id, current_date, count)
                 cv2.imwrite(local_img_path, image)
-                print('save', str(int(video.get(1))))
-                upload_to_gcs(local_img_path, cv2.imencode('.jpg', image)[1].tobytes())
+                print("save", str(int(video.get(1))))
+                upload_to_gcs(local_img_path, cv2.imencode(".jpg", image)[1].tobytes())
                 os.remove(local_img_path)
                 count += 1
-                
+
         os.remove(local_file_path)
-        
-        
+
         video.release()
         return "Upload successful", 200
-    
+
+
 ##########################################
+
 
 @app.route("/report")
 def report():
     return render_template("report.html")
-
-
-# @app.route("/logout")
-# def logout():
-#     session.clear()
-#     return redirect("/")
-
-
-# @app.route("/studycam")
-# def study_cam():
-#     return render_template("cam_page.html")
 
 
 @app.route("/contact")
