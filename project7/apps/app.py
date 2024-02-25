@@ -11,6 +11,8 @@ import google.auth.transport.requests
 #############
 from flask_sqlalchemy import SQLAlchemy
 from flask import after_this_request
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 
 ##############
 
@@ -38,6 +40,15 @@ class User(db.Model):
     id = db.Column(db.String, primary_key=True)
     name = db.Column(db.String)
     email = db.Column(db.String)
+
+
+# class UserData(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+#     concentration = db.Column(db.String)
+
+#     # Define a relationship with the User table
+#     user = relationship("User", backref="user_data", foreign_keys=[user_id])
 
 
 # 데이터베이스 생성 및 초기화
@@ -78,7 +89,7 @@ def login_is_required(function):
 ###########################################
 # sj 서비스 계정 gcs 연동
 # 유출 금지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "team05-project-3ee2c0d1741b.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "team05-project-c7a54e239686.json"
 
 ######################################################
 
