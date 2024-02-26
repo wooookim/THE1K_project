@@ -1,0 +1,18 @@
+#cam {
+    background-color: black;
+    width: 400px;
+    height: 300px;
+    /* border: solid 2px #1e30f3; */
+    border-radius: 5px;
+}
+
+.video-buttons button {
+    border: none;
+    margin-right: 20px;
+    padding: 5px 12px;
+}
+
+#file{
+    padding-left: 170px;
+    /* border: none; */
+}

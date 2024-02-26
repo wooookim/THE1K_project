@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'cam_page.css') }}">
+</head>
+<body>
+    <div class="study_func">
+        <video autoplay="true" id="videoElement"></video>
+        <!-- <canvas class="canvas" id="mirrored"></canvas> -->
+
+        <div class="study_times">
+            <p class="study_now_time">현재 시작 시간 : <span class="now_time_stamp">01:23</span></p>
+            <p class="study_real_time">실제 시작 시간 : <span class="real_time_stamp">00:57</span></p>
+            <a href="{{ url_for('google_login') }}">종료</a>
+        </div>
+    </div>
+    
+</body>
+<script src="{{ url_for('static', filename = 'cam_page.js') }}"></script>
+</html>
