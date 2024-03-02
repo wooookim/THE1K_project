@@ -51,17 +51,17 @@
  <tr>
   <td align="center" width="150px">
    <a href='https://github.com/wooookim' target='_blank'>
-    김성우(PM)
+    김성우(PM/BE)
    </a>
   </td>
   <td align="center" width="150px">
    <a href='https://github.com/Soojin6943' target='_blank'>
-    한수진
+    한수진(BE)
    </a>
   </td>
   <td align="center" width="150px">
    <a href='https://github.com/HEOJOONSUNG' target='_blank'>
-    허준성
+    허준성(AI)
    </a>
   </td>
  </tr>
