@@ -1,19 +1,32 @@
-## 🦉Focus On Me (with GCP)
+## 🦉 Focus On Me (with GCP)
 - 안구 분석 AI모델을 활용한 순 공부시간(집중시간) 측정 서비스
 <br>
 
-## 💻프로젝트 소개
+## 💻 프로젝트 소개
 - 우리는 공부를 시작해서 얼마나 몰입하고 있을까요.
 - 사용자의 공부 영상을 분석해 측정 시간동안의 데이터를 대시보드로 제공합니다.
 - 데이터 분석에는 GCP의 Vertex AI를 사용합니다.
 - GCP 기반 인공지능 개발자 양성 과정 중 진행한 프로젝트입니다.
 <br>
+비대면 학습 환경에서 **집중력 저하**가 문제가 되는 것을 보고, 이를 시각적으로 분석해 사용자에게 피드백을 주는 서비스가 필요하다고 생각하여 기획했습니다.
+<br>
+<br>
 
-## 🗓️개발 기간
+## 🗓️ 개발 기간
 - 2024.02.05.(월) ~ 25.(일) / 21일(3주)
 <br>
 
-## 👀서비스 소개
+## 🔧 주요 기능
+- 실시간 영상 촬영 및 업로드
+- 영상 프레임 분리 → AI 모델로 분석 요청
+- 집중/졸림 상태 판별 → 통계 차트 제공
+<br>
+
+## 🔄 아키텍처
+- 클라이언트 → 백엔드 서버 → AI 분석 서버 → 결과 반환 → 시각화
+<br>
+
+## 👀 서비스 소개
 - 홈 페이지
 ![프로젝트 홈 전체 페이지 1-1](https://github.com/wooookim/THE1K_project/assets/137133359/930f3922-e846-4963-af50-aed068bca014)
 - 로그인 페이지
@@ -28,6 +41,6 @@
 
 
 
-## 🛠️Stacks
+## 🛠️ Stacks
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"><img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"><img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
   <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
